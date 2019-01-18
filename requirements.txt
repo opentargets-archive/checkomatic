@@ -1,0 +1,6 @@
+opentargets
+more-itertools
+bpython
+functional
+pyyaml
+addict

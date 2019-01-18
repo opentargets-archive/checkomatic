@@ -1,0 +1,23 @@
+rules:
+  - code: |-
+      print(input)
+      output = 32 + 32
+  - targets:
+      - DMD:
+          and: >-
+              .name: "print('asdf');
+              42
+      - rule2:
+          or: 32 + 32
+  - diseases:
+      - rule1:
+          and: []
+  - associations:
+      - rule1:
+          or: []
+  - evidences:
+      - associationID:
+          and: asdf asd fasdflkm
+  - aggregations:
+      - rule1:
+          and: []
