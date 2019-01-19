@@ -1,0 +1,2 @@
+include checkomatic/data/*.yml
+include checkomatic/data/*.txt

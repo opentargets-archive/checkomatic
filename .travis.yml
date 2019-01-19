@@ -1,0 +1,29 @@
+sudo: required
+language: python
+python:
+  - '2.7'
+install:
+  - if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then sudo apt-get install python-pandas; fi
+  - pip install --upgrade pip
+  - pip install -r requirements.txt
+script:
+#   - pytest --cov=opentargets --cov-report term tests/ --fulltrace
+  - pip install wheel
+  - python setup.py bdist_wheel --universal
+notifications:
+  email:
+    recipients:
+    - ops@opentargets.org
+    on_success: never
+    on_failure: always
+after_success:
+#  - codecov
+deploy:
+  provider: pypi
+  user: "${PYPI_USERNAME}"
+  password: "${PYPI_PASSWORD}"
+  skip_existing: true
+  skip_cleanup: true
+  distributions: "bdist_wheel"
+  on:
+    tags: true

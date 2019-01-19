@@ -4,3 +4,4 @@ bpython
 pyfunctional
 pyyaml
 addict
+docopt
