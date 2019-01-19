@@ -37,6 +37,8 @@ checkomatic:
 #      # these (evidences) use dataframes (t) instead addict.Dict object (o)
 #      # those are easier to manipulate and filter by
 #      ENSG00000162434-EFO_0000685:
+#    search:
+#      "asdf sdf":
     stats:
       - o.data_version == "18.12"
       - o.targets.total > 28000 and o.targets.total < 50000
