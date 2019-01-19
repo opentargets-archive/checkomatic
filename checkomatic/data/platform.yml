@@ -23,20 +23,44 @@ checkomatic:
       # those are easier to manipulate and filter by
       targets:
         PRDX1:
+          # execute a block of python code
           - |-
-            print('num assciations', t['id'].count())
+            print('num assciations', t['id'].shape)
             print('num columns per association', len(t.columns.tolist()))
             output = True
+        DMD:
+          # is Duchenne muscular dystrophy there?
+          - (t[t['disease.id'] == 'Orphanet_98896']).shape[0] > 0
+        CD86:
+          # is multiple sclerosis in the list?
+          - (t[t['disease.id'] == 'EFO_0003885']).shape[0] > 0
+        ITGAL:
+          # IBD in the list
+          - (t[t['disease.id'] == 'EFO_0003767']).shape[0] > 0
       diseases:
         Orphanet_93256:
           - |-
             print('num assciations', t['id'].count())
             print('num columns per association', len(t.columns.tolist()))
             output = True
+        EFO_0003767:
+          # NOD2, IL10RA, IL23R, ITGAL in IBD
+          - t[t['target.gene_info.symbol'].isin(['NOD2', 'IL10RA', 'ITGAL'])].shape[0] == 3
+        EFO_0000384:
+          # TNF, PTGS2, PTGS1 in crohns disease
+          - t[t['target.gene_info.symbol'].isin(['TNF', 'PTGS2', 'PTGS1'])].shape[0] == 3
+        EFO_0000249:
+          # APP, SORL1, ABCA7, ADAM10 in alzheimers disease
+          - t[t['target.gene_info.symbol'].isin(['APP', 'SORL1', 'ABCA7', 'ADAM10'])].shape[0] == 4
+        Orphanet_399:
+          # huntington disease
+          - t[t['target.gene_info.symbol'] == 'HTT'].shape[0] == 1
 #    evidences:
 #      # these (evidences) use dataframes (t) instead addict.Dict object (o)
 #      # those are easier to manipulate and filter by
-#      ENSG00000162434-EFO_0000685:
+#      # check for Should have literature, drugs, animal models and
+#      # at least 1 piece of genetic evidence (i.e. trinucleotide expansions from ClinVar) for HTT.
+#      ENSG00000197386-Orphanet_399:
 #    search:
 #      "asdf sdf":
     stats:
