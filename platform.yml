@@ -1,0 +1,18 @@
+checkomatic:
+  client:
+    host: https://platform-api.opentargets.io
+    port: 443
+  rules:
+    targets:
+      DMD:
+        - |-
+          print('target approved name', o.approved_name)
+          output = True
+        - o['id'] == 'ENSG00000198947'
+    diseases:
+    associations:
+    evidences:
+    stats:
+      - o.data_version == "18.11"
+      - o.targets.total > 28000 and o.targets.total < 50000
+      - o.diseases.total > 10000 and o.diseases.total < 20000
