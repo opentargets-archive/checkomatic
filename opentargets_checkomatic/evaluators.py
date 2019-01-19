@@ -2,7 +2,7 @@ import addict
 import itertools as iters
 import functional as fn
 
-from checkomatic.helpers import failed_at, make_local_env
+from opentargets_checkomatic.helpers import failed_at, make_local_env
 
 
 def eval_section(assertion_list, global_dict, local_env):
@@ -19,7 +19,8 @@ def eval_section(assertion_list, global_dict, local_env):
                 failed_at(elem)
             return r
 
-    return list(iters.imap(lambda e: _eval_elem(e, global_dict, local_env), assertion_list))
+    return list(iters.imap(lambda e: _eval_elem(e, global_dict, local_env),
+                           assertion_list if assertion_list is not None else []))
 
 
 def eval_stats(ot_client, assertion_list, global_env):

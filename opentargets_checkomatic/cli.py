@@ -5,8 +5,8 @@ import addict
 import functional as fn
 from docopt import docopt
 
-from checkomatic.helpers import make_client, uri_open_and_read
-import checkomatic.evaluators as evaluators
+from opentargets_checkomatic.helpers import make_client, uri_open_and_read
+import opentargets_checkomatic.evaluators as evaluators
 
 ARGS = """OpenTargets Check-O-Matic.
 
@@ -18,7 +18,7 @@ Usage:
 Options:
   -h --help     Show this screen.
   --version     Show version.
-  --file=<filename.yml>  config filename.
+  -f --file=<filename.yml>  config filename.
 
 """
 

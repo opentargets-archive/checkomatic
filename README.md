@@ -1,4 +1,56 @@
-## Check-O-Matic
+# Check-O-Matic
+
+## Install
+
+```
+pip install opentargets-checkomatic
+opentargets_checkomatic eval -f platform-api.yml
+```
+
+The `YAML` file can be like this
+```yaml
+checkomatic:
+  client:
+    host: https://open-targets-eu-dev.appspot.com
+    port: 443
+    size: 1000 # max size to fetch when query and it is applicable
+  rules:
+    targets:
+      DMD:
+        - o['id'] == 'ENSG00000198947'
+    diseases:
+      Orphanet_908:
+        - o.name == 'Fragile X syndrome'
+        - o.association_counts.total > 400
+        - o.association_counts.direct > 400
+      Orphanet_273:
+        - o.name == 'Steinert myotonic dystrophy'
+      Orphanet_93256:
+        - o.name == 'Fragile X-associated tremor/ataxia syndrome'
+    associations:
+      # these (targets and diseases) use dataframes (t) instead addict.Dict object (o)
+      # those are easier to manipulate and filter by
+      targets:
+        DMD:
+          # is Duchenne muscular dystrophy there?
+          - (t[t['disease.id'] == 'Orphanet_98896']).shape[0] > 0
+      diseases:
+        EFO_0003767:
+          # NOD2, IL10RA, IL23R, ITGAL in IBD
+          - t[t['target.gene_info.symbol'].isin(['NOD2', 'IL10RA', 'ITGAL'])].shape[0] == 3
+    stats:
+      - o.data_version == "18.12"
+      - o.targets.total > 28000 and o.targets.total < 50000
+      - o.diseases.total > 10000 and o.diseases.total < 20000
+      - len(o.associations.datatypes.keys()) == 7
+      - ('sysbio' in o.associations.datatypes.affected_pathway.datasources)
+      - |-
+        dts = o.associations.datatypes.keys()
+        dss = []
+        for dt in dts:
+          dss += o.associations.datatypes[dt].datasources.keys()
+        output = len(dss) == 19
+```
 
 # Copyright
 

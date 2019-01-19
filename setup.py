@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 from setuptools import setup
-import checkomatic as p
+import opentargets_checkomatic as p
 
 
 with open('requirements.txt') as f:
@@ -17,7 +17,7 @@ setup(name=p.__pkgname__,
       maintainer='Miguel Carmona',
       maintainer_email='carmona@ebi.ac.uk',
       url=p.__homepage__,
-      packages=['checkomatic'],
+      packages=['opentargets_checkomatic'],
       license=p.__license__,
       keywords=['opentargets', 'bioinformatics', 'python2'],
       platforms=['any'],
@@ -25,7 +25,7 @@ setup(name=p.__pkgname__,
       dependency_links=[],
       include_package_data=True,
       entry_points={
-          'console_scripts': ['checkomatic=checkomatic.cli:main'],
+          'console_scripts': ['opentargets_checkomatic=opentargets_checkomatic.cli:main'],
       },
       data_files=[],
       scripts=[])
