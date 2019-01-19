@@ -25,7 +25,6 @@ Options:
 
 def main(filename):
     arguments = docopt(ARGS, version='OT Check-O-Matic v0.0.1')
-    print(arguments)
 
     if arguments['eval']:
         conf_content = uri_open_and_read(arguments['--file'])
