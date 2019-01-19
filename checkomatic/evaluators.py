@@ -24,7 +24,6 @@ def eval_section(assertion_list, global_dict, local_env):
 
 def eval_stats(ot_client, assertion_list, global_env):
     data = ot_client.get_stats()
-    print(data)
     if data.total > 0:
         local_env = make_local_env(input=None, output=False)
         stats_o = addict.Dict(fn.seq(data.to_object()).take(1).head())
@@ -59,6 +58,26 @@ def eval_diseases(ot_client, section_dict, global_env):
             local_env = make_local_env(input=None, output=False)
             disease_o = addict.Dict(fn.seq(data.to_object()).take(1).head().data)
             local_env['o'] = disease_o
+            asserted_k = eval_section(v, global_env, local_env)
+            asserted += asserted_k
+        else:
+            asserted += [False]
+
+    return asserted
+
+
+def eval_associations(ot_client, by_type, section_dict, global_env):
+    asserted = []
+    for ((k, v), i) in fn.seq(section_dict.items()).zip_with_index(start=1).to_list():
+        if by_type == 'target':
+            data = ot_client.get_associations_for_target(k)
+        else:
+            data = ot_client.get_associations_for_disease(k)
+
+        if data.total > 0:
+            local_env = make_local_env(input=None, output=False)
+            data_t = data.to_dataframe()
+            local_env['t'] = data_t
             asserted_k = eval_section(v, global_env, local_env)
             asserted += asserted_k
         else:

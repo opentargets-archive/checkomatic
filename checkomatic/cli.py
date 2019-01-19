@@ -42,6 +42,16 @@ def main(filename):
             results += evaluators.eval_diseases(ot_client, c.checkomatic.rules.diseases.to_dict(), _g)
         if c.checkomatic.rules.stats:
             results += evaluators.eval_stats(ot_client, c.checkomatic.rules.stats, _g)
+        if c.checkomatic.rules.associations.targets:
+            results += evaluators.eval_associations(ot_client,
+                                                    'target',
+                                                    c.checkomatic.rules.associations.targets.to_dict(),
+                                                    _g)
+        if c.checkomatic.rules.associations.diseases:
+            results += evaluators.eval_associations(ot_client,
+                                                    'disease',
+                                                    c.checkomatic.rules.associations.diseases.to_dict(),
+                                                    _g)
 
         oks = fn.seq(results).filter(lambda e: e == True).count_by_value()
         fails = fn.seq(results).filter(lambda e: e == False).count_by_value()

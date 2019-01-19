@@ -1,3 +1,4 @@
+pandas
 opentargets
 more-itertools
 bpython
