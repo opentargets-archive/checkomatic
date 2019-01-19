@@ -1,8 +1,8 @@
 pandas
-opentargets
 more-itertools
 bpython
 pyfunctional
 pyyaml
 addict
 docopt
+opentargets

@@ -23,7 +23,7 @@ Options:
 """
 
 
-def main(filename):
+def main():
     arguments = docopt(ARGS, version='OT Check-O-Matic v0.0.1')
 
     if arguments['eval']:
@@ -63,5 +63,9 @@ def main(filename):
             return 0
 
 
+def cli():
+    sys.exit(main())
+
+
 if __name__ == '__main__':
-    sys.exit(main(filename="platform.yml"))
+    cli()

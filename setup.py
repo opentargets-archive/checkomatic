@@ -25,7 +25,7 @@ setup(name=p.__pkgname__,
       dependency_links=[],
       include_package_data=True,
       entry_points={
-          'console_scripts': ['opentargets_checkomatic=opentargets_checkomatic.cli:main'],
+          'console_scripts': ['opentargets_checkomatic=opentargets_checkomatic.cli:cli'],
       },
       data_files=[],
       scripts=[])
