@@ -10,8 +10,18 @@ checkomatic:
           output = True
         - o['id'] == 'ENSG00000198947'
     diseases:
+      Orphanet_908:
+        - o.name == 'Fragile X syndrome'
+        - o.association_counts.total > 400
+        - o.association_counts.direct > 400
+      Orphanet_273:
+        - o.name == 'Steinert myotonic dystrophy'
+      Orphanet_93256:
+        - o.name == 'Fragile X-associated tremor/ataxia syndrome'
     associations:
+# TODO USAR PYFRAMES PARA FILTRAR EL CONTENIDO DEVUELTO
     evidences:
+# TODO USAR PYFRAMES PARA FILTRAR EL CONTENIDO DEVUELTO
     stats:
       - o.data_version == "18.11"
       - o.targets.total > 28000 and o.targets.total < 50000
