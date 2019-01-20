@@ -1,4 +1,4 @@
-pandas
+jsonpath-rw
 more-itertools
 bpython
 pyfunctional

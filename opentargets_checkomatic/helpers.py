@@ -4,6 +4,14 @@ import addict
 import opentargets as ot
 
 
+def to_vlist(iterable):
+    return [match.value for match in iterable]
+
+
+def to_vset(iterable):
+    return set(to_vlist(iterable))
+
+
 def failed_at(s):
     print("failed at", s)
 
