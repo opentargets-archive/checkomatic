@@ -11,25 +11,24 @@ The `YAML` file can be like this
 ```yaml
 checkomatic:
   client:
-    host: https://platform-api.opentargets.io
+    host: https://open-targets-eu-dev.appspot.com
     port: 443
     size: 100 # max size to fetch when query and it is applicable
   rules:
     targets:
-      DMD:
-        - |-
-          # print('target approved name', o.approved_name)
-          output = True
-        - o['id'] == 'ENSG00000198947'
+      ENSG00000198947:
+        - o.approved_symbol == 'DMD'
+        - o.approved_name == 'dystrophin'
+        - o.tractability.smallmolecule.top_category == 'Unknown'
+        - o.tractability.antibody.top_category == 'Predicted Tractable - High confidence'
     diseases:
       Orphanet_908:
-        - o.name == 'Fragile X syndrome'
-        - o.association_counts.total > 400
-        - o.association_counts.direct > 400
+        - o.label == 'Fragile X syndrome'
+        - ('eye disease' in o.therapeutic_labels)
       Orphanet_273:
-        - o.name == 'Steinert myotonic dystrophy'
+        - o.label == 'Steinert myotonic dystrophy'
       Orphanet_93256:
-        - o.name == 'Fragile X-associated tremor/ataxia syndrome'
+        - o.label == 'Fragile X-associated tremor/ataxia syndrome'
     associations:
       # these (targets and diseases) use dataframes (t) instead addict.Dict object (o)
       # those are easier to manipulate and filter by
@@ -67,6 +66,10 @@ checkomatic:
       diseases:
         "crohn disease":
           - len(o.data) > 0
+        Orphanet_908:
+          - o.data[0].name == 'Fragile X syndrome'
+          - o.data[0].association_counts.total > 400
+          - o.data[0].association_counts.direct > 400
       targets:
         "mt-nd":
           - len(o.data) > 0

@@ -41,10 +41,11 @@ def eval_targets(ot_client, section_dict, global_env):
     asserted = []
     for ((k, v), i) in fn.seq(section_dict.items()).zip_with_index(start=1).to_list():
         data = ot_client.search(k, size=1, filter="target")
+        data = ot_client.get_target(k)
         print('eval target', k)
         if data.total > 0:
             local_env = make_local_env(input=None, output=False)
-            target_o = addict.Dict(fn.seq(data.to_object()).take(1).head().data)
+            target_o = data.to_object().next()
             local_env['d'] = target_o.to_dict()
             local_env['o'] = target_o
             asserted_k = eval_section(v, global_env, local_env)
@@ -58,11 +59,11 @@ def eval_targets(ot_client, section_dict, global_env):
 def eval_diseases(ot_client, section_dict, global_env):
     asserted = []
     for ((k, v), i) in fn.seq(section_dict.items()).zip_with_index(start=1).to_list():
-        data = ot_client.search(k, size=1, filter="disease")
+        data = ot_client.get_disease(k)
         print('eval disease', k)
         if data.total > 0:
             local_env = make_local_env(input=None, output=False)
-            disease_o = addict.Dict(fn.seq(data.to_object()).take(1).head().data)
+            disease_o = data.to_object().next()
             local_env['d'] = disease_o.to_dict()
             local_env['o'] = disease_o
             asserted_k = eval_section(v, global_env, local_env)
