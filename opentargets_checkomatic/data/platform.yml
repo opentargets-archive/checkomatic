@@ -56,9 +56,9 @@ checkomatic:
         "crohn disease":
           - len(o.data) > 0
         Orphanet_908:
-          - o.data[0].name == 'Fragile X syndrome'
-          - o.data[0].association_counts.total > 400
-          - o.data[0].association_counts.direct > 400
+          - o.data[0].data.name == 'Fragile X syndrome'
+          - o.data[0].data.association_counts.total > 400
+          - o.data[0].data.association_counts.direct > 400
       targets:
         "mt-nd":
           - len(o.data) > 0
