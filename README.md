@@ -96,8 +96,8 @@ the data remains in memory across the full list to check for the specific object
 - to_vset(iterable) function to transform jp find() to a set of values
 
 ## Rules
-- targets - either a target name or an Ensembl ID
-- diseases - either a disease name or a disease ID (EFO, Orphanet, ...) 
+- targets - an Ensembl ID
+- diseases - a disease ID (EFO, Orphanet, ...) 
 - associations - you have 2 subsections, targets and diseases. Whether it is a target or a disease it returns all associations to the object
 - evidences - it returns up to size evidences for that association tuple (t,d)
 - searches - you have 2 subsections, targets and diseases. Whether it is a target or a disease it returns up to size search results filtered by either target or disease 
