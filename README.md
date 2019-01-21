@@ -55,10 +55,6 @@ checkomatic:
           # huntington disease
           - not set(['HTT']) - to_vset(jp.parse('data[*].target.gene_info.symbol').find(d))
     evidences:
-      # these (evidences) use dataframes (t) instead addict.Dict object (o)
-      # those are easier to manipulate and filter by
-      # check for Should have literature, drugs, animal models and
-      # at least 1 piece of genetic evidence (i.e. trinucleotide expansions from ClinVar) for HTT.
       ENSG00000102081-Orphanet_908:
         # http://purl.obolibrary.org/obo/SO_0001583
         - ('missense_variant' in to_vlist(jp.parse('data[*].evidence.evidence_codes_info[*][*].label').find(d)))
@@ -67,9 +63,9 @@ checkomatic:
         "crohn disease":
           - len(o.data) > 0
         Orphanet_908:
-          - o.data[0].name == 'Fragile X syndrome'
-          - o.data[0].association_counts.total > 400
-          - o.data[0].association_counts.direct > 400
+          - o.data[0].data.name == 'Fragile X syndrome'
+          - o.data[0].data.association_counts.total > 400
+          - o.data[0].data.association_counts.direct > 400
       targets:
         "mt-nd":
           - len(o.data) > 0
