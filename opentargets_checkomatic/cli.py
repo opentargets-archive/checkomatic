@@ -91,8 +91,8 @@ def main():
                                                 _g,
                                                 c.checkomatic.client.size)
 
-        oks = fn.seq(results).filter(lambda e: e == True).count_by_value()
-        fails = fn.seq(results).filter(lambda e: e == False).count_by_value()
+        oks = fn.seq(results).filter(lambda e: e == True).count_by_value().to_list()
+        fails = fn.seq(results).filter(lambda e: e == False).count_by_value().to_list()
         print("oks", oks, "fails", fails)
 
         if len(fails) > 0 or len(oks) == 0:
