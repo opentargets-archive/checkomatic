@@ -59,6 +59,9 @@ def main():
         if c.checkomatic.rules.stats:
             results += evaluators.eval_stats(ot_client, c.checkomatic.rules.stats, _g)
 
+        if c.checkomatic.rules.metrics:
+            results += evaluators.eval_metrics(ot_client, c.checkomatic.rules.metrics, _g)
+
         if c.checkomatic.rules.associations.targets:
             results += evaluators.eval_associations(ot_client,
                                                     'target',

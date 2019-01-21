@@ -70,3 +70,6 @@ checkomatic:
         for dt in dts:
           dss += o.associations.datatypes[dt].datasources.keys()
         output = len(dss) == 19
+    metrics:
+      - o.data_version == "18.12"
+      - o.genes.approved_symbol.doc_count > 58000

@@ -102,6 +102,7 @@ the data remains in memory across the full list to check for the specific object
 - evidences - it returns up to size evidences for that association tuple (t,d)
 - searches - you have 2 subsections, targets and diseases. Whether it is a target or a disease it returns up to size search results filtered by either target or disease 
 - stats - currently returns an object with the aggregation v3/platform/public/utils/stats endpoint returns
+- metrics - currently returns an object with the aggregation v3/platform/public/utils/metrics endpoint returns
 
 # Copyright
 

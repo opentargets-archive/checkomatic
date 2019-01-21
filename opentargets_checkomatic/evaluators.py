@@ -37,6 +37,20 @@ def eval_stats(ot_client, assertion_list, global_env):
         return []
 
 
+def eval_metrics(ot_client, assertion_list, global_env):
+    print('eval metrics', 'all')
+    data = ot_client.get_metrics()
+    if data.total > 0:
+        local_env = make_local_env(input=None, output=False)
+        stats_o = addict.Dict(fn.seq(data.to_object()).take(1).head())
+        local_env['d'] = stats_o.to_dict()
+        local_env['o'] = stats_o
+        asserted = eval_section(assertion_list, global_env, local_env)
+        return asserted
+    else:
+        return []
+
+
 def eval_targets(ot_client, section_dict, global_env):
     asserted = []
     for ((k, v), i) in fn.seq(section_dict.items()).zip_with_index(start=1).to_list():
