@@ -84,6 +84,26 @@ checkomatic:
         output = len(dss) == 19
 ```
 
+Each item can be either
+- single-line python boolean expression
+- multi-line python code setting the output variable to a boolean expression
+the data remains in memory across the full list to check for the specific object
+
+## Things already injected
+- o as addict.Dict object with either the object itself or multiple results inside the o.data field
+- d as python dict object with either the object itself or multiple results inside the d['data'] field
+- jp module as an abbreviation standing for jsonpath-rw
+- to_vlist(iterable) function to transform jp find() to a list of values
+- to_vset(iterable) function to transform jp find() to a set of values
+
+## Rules
+- targets - either a target name or an Ensembl ID
+- diseases - either a disease name or a disease ID (EFO, Orphanet, ...) 
+- associations - you have 2 subsections, targets and diseases. Whether it is a target or a disease it returns all associations to the object
+- evidences - it returns up to size evidences for that association tuple (t,d)
+- searches - you have 2 subsections, targets and diseases. Whether it is a target or a disease it returns up to size search results filtered by either target or disease 
+- stats - currently returns an object with the aggregation v3/platform/public/utils/stats endpoint returns
+
 # Copyright
 
 Copyright 2014-2018 Biogen, Celgene Corporation, EMBL - European Bioinformatics Institute, GlaxoSmithKline, Takeda Pharmaceutical Company and Wellcome Sanger Institute
