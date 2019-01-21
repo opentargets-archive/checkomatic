@@ -25,7 +25,7 @@ def make_local_env(*args, **kwargs):
 
 
 def uri_open_and_read(uri):
-    quoted_uri = urllib.quote(uri)
+    quoted_uri = uri
     if ('http://' not in quoted_uri) and ('https://' not in quoted_uri):
         if 'file://' not in quoted_uri:
             quoted_uri = 'file://' + urllib.quote(os.path.abspath(uri))
