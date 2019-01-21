@@ -44,10 +44,6 @@ checkomatic:
           # huntington disease
           - not set(['HTT']) - to_vset(jp.parse('data[*].target.gene_info.symbol').find(d))
     evidences:
-      # these (evidences) use dataframes (t) instead addict.Dict object (o)
-      # those are easier to manipulate and filter by
-      # check for Should have literature, drugs, animal models and
-      # at least 1 piece of genetic evidence (i.e. trinucleotide expansions from ClinVar) for HTT.
       ENSG00000102081-Orphanet_908:
         # http://purl.obolibrary.org/obo/SO_0001583
         - ('missense_variant' in to_vlist(jp.parse('data[*].evidence.evidence_codes_info[*][*].label').find(d)))

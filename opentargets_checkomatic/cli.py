@@ -95,7 +95,7 @@ def main():
         fails = fn.seq(results).filter(lambda e: e == False).count_by_value()
         print("oks", oks, "fails", fails)
 
-        if fails > 0 or oks == 0:
+        if len(fails) > 0 or len(oks) == 0:
             return 1
         else:
             return 0
