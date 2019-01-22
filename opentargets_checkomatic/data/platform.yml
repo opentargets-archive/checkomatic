@@ -19,8 +19,6 @@ checkomatic:
       Orphanet_93256:
         - o.label == 'Fragile X-associated tremor/ataxia syndrome'
     associations:
-      # these (targets and diseases) use dataframes (t) instead addict.Dict object (o)
-      # those are easier to manipulate and filter by
       targets:
         PRDX1:
         DMD:
