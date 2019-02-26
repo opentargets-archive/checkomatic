@@ -9,7 +9,9 @@ checkomatic:
         - o.approved_symbol == 'DMD'
         - o.approved_name == 'dystrophin'
         - o.tractability.smallmolecule.top_category == 'Unknown'
-        - o.tractability.antibody.top_category == 'Predicted Tractable - High confidence'
+        - >-
+          o.tractability.antibody.top_category ==
+            'Predicted Tractable - High confidence'
     diseases:
       Orphanet_908:
         - o.label == 'Fragile X syndrome'
@@ -43,8 +45,11 @@ checkomatic:
           - not set(['HTT']) - to_vset(jp.parse('data[*].target.gene_info.symbol').find(d))
     evidences:
       ENSG00000102081-Orphanet_908:
-        # http://purl.obolibrary.org/obo/SO_0001583
-        - ('missense_variant' in to_vlist(jp.parse('data[*].evidence.evidence_codes_info[*][*].label').find(d)))
+        - |-
+          # http://purl.obolibrary.org/obo/SO_0001583
+          so_label = 'missense_variant'
+          parser = jp.parse('data[*].evidence.evidence_codes_info[*][*].label')
+          output = so_label in to_vlist(parser.find(d)))
     searches:
       diseases:
         "crohn disease":
