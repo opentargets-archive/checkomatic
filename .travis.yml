@@ -4,7 +4,7 @@ services:
   - docker
 env:
   global:
-    - QUAY_REPO="quay.io/opentargets/mrtarget"
+    - QUAY_REPO="quay.io/opentargets/checkomatic"
 python:
   - '2.7'
 install:
