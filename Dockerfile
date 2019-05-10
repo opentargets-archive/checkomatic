@@ -16,8 +16,5 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN pip install --no-cache-dir -e .
 
-RUN mkdir /usr/src/app/checks
-RUN wget https://github.com/opentargets/platform-checks/blob/master/platform-api.yml /usr/src/app/checks/platform-api.yml
-
 # point to the entrypoint script
 ENTRYPOINT ["opentargets_checkomatic"]
