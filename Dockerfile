@@ -1,8 +1,16 @@
-FROM python:2.7-alpine
-LABEL maintainer="ops@opentargets.org"
+FROM ubuntu:xenial
+MAINTAINER ops @opentargets <ops@opentargets.org>
 
-RUN apk update && \
-    apk add --virtual build-deps gcc python-dev 
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python-software-properties \
+    build-essential \
+    python-dev \
+    python \
+    wget \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 	
 RUN pip install certifi opentargets-checkomatic
 
