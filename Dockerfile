@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN pip install --no-cache-dir -e .
-RUN pip install certifi
+
 
 # point to the entrypoint script
 ENTRYPOINT ["opentargets_checkomatic"]

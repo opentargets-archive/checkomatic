@@ -1,3 +1,4 @@
+future==0.16.0 #pinning transitive dependency of pyfunctional and opentargets
 jsonpath-rw
 more-itertools
 bpython
