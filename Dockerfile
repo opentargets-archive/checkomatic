@@ -3,8 +3,7 @@ LABEL maintainer="ops@opentargets.org"
 
 #need make gcc etc for requirements later
 RUN apt-get update && apt-get install -y \
-    build-essential \
-	wget
+    build-essential
 
 # install fresh these requirements.
 # do this before copying the code to minimize image layer rebuild for dev
