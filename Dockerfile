@@ -7,8 +7,13 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     git \
     curl
+
+RUN mkdir -p /var/checkomatic
 	
+WORKDIR /var/checkomatic
+
 RUN pip install certifi opentargets-checkomatic
 
 # point to the entrypoint script
 ENTRYPOINT [ "opentargets_checkomatic" ]
+
