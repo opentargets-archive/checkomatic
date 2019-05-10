@@ -8,13 +8,13 @@ RUN apt-get update && apt-get install -y \
 # install fresh these requirements.
 # do this before copying the code to minimize image layer rebuild for dev
 COPY ./requirements.txt /usr/src/app/
-RUN pip install certifi
 RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
 
 #put the application in the right place
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN pip install --no-cache-dir -e .
+RUN pip install certifi
 
 # point to the entrypoint script
-ENTRYPOINT [ "opentargets_checkomatic" ]
+ENTRYPOINT ["opentargets_checkomatic"]
