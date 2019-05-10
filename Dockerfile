@@ -1,16 +1,12 @@
-FROM ubuntu:xenial
-MAINTAINER ops @opentargets <ops@opentargets.org>
+FROM python:2.7-slim
+LABEL maintainer="ops@opentargets.org"
 
-# Install required packages
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends python-software-properties \
+#need make gcc etc for requirements later
+#need git to pip install from git
+RUN apt-get update && apt-get install -y \
     build-essential \
-    python-dev \
-    python \
-    wget \
-    curl \
     git \
-    && rm -rf /var/lib/apt/lists/*
+    curl
 	
 RUN pip install certifi opentargets-checkomatic
 
