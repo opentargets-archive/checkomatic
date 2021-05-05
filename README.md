@@ -1,4 +1,5 @@
 # Check-O-Matic
+Note: Check-O-Matic is not compatible with GraphQL-API at the moment.
 
 ## Install
 
